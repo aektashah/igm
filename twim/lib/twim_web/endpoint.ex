@@ -36,7 +36,7 @@ defmodule TwimWeb.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_twim_key",
-    signing_salt: "k+bVXyo0"
+    signing_salt: "bhC+tVDi"
 
   plug TwimWeb.Router
 

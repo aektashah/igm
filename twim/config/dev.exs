@@ -52,7 +52,7 @@ config :phoenix, :stacktrace_depth, 20
 config :twim, Twim.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: "Soniczelda2",
+  password: "gaisou9eiN",
   database: "twim_dev",
   hostname: "localhost",
   pool_size: 10
