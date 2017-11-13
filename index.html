@@ -3,11 +3,20 @@
     <title>TWIM Test Map</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"> 
+
+    <!-- Styles (Move -->
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
         height: 100%;
+      }
+
+      #tweets {
+        background-color: #f7f7f7;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -17,8 +26,18 @@
       }
     </style>
   </head>
+
+  <nav class="nav">
+    <a class="nav-link active" href="#">Twim</a>
+  </nav>
+
   <body>
-    <div id="map"></div>
+    <div class="row">
+      <div class="col-md-8" id="map"></div>
+      <div class="col-md-4" id="tweets"></div>
+    </div>
+
+
     <script>
       var map;
       function initMap() {
