@@ -8,13 +8,18 @@ defmodule TwimWeb.AuthController do
 		[get_val_resp(response, "oauth_token"), get_val_resp(response, "oauth_token_secret"), true]
 	end
 
-	def oauth_access_token(conn, oauth_token, oauth_verifier) do
+	def oauth_access_token(oauth_token, oauth_verifier) do
 		response = post_oauth_request("https://api.twitter.com/oauth/access_token", 
 			[{"oauth_token", oauth_token}, {"oauth_verifier", oauth_verifier}])
 		user = %{screen_name: get_val_resp(response, "screen_name"), oauth_token: get_val_resp(response, "oauth_token"),
 			oauth_token_secret: get_val_resp(response, "oauth_token_secret"), user_id: get_val_resp(response, "user_id")}
-		Accounts.create_user(user)
-		String.to_integer(user.user_id)
+		user_id = String.to_integer(user.user_id)
+		if Accounts.get_user_by_user_id(user_id) do
+			user_id
+		else
+			Accounts.create_user(user)
+			user_id
+		end
 	end
 
 	defp post_oauth_request(url, postargs) do
