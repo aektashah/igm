@@ -1,11 +1,15 @@
-
 <%= if @current_user do %>
- HI <%= @current_user.screen_name %>
-
+Hi, <%= @current_user.screen_name %>!
+</br>
+Your access token is <%= @current_user.oauth_token %>.
+</br>
+<a class="btn btn-primary btn-lg">
+Log out
+</a>
 
 <% else %>
 
-<a class="btn btn-primary btn-lg" href= <%= "https://api.twitter.com/oauth/authorize?oauth_token=#{@oauth_token}" %>>
+<a class="btn btn-primary btn-lg" href=<%= "https://api.twitter.com/oauth/authorize?oauth_token=#{@oauth_token}" %>>
 Sign in with Twitter
 </a>
 
