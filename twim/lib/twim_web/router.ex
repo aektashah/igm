@@ -1,5 +1,6 @@
 defmodule TwimWeb.Router do
   use TwimWeb, :router
+  import Twim.Plugs
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -7,6 +8,7 @@ defmodule TwimWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :fetch_user
   end
 
   pipeline :api do
