@@ -1,16 +1,100 @@
-<%= if @current_user do %>
-Hi, <%= @current_user.screen_name %>!
-</br>
-Your access token is <%= @current_user.oauth_token %>.
-</br>
-<a class="btn btn-primary btn-lg">
-Log out
-</a>
+<html>
+  <head>
+    <title>TWIM Test Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
 
-<% else %>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
-<a class="btn btn-primary btn-lg" href=<%= "https://api.twitter.com/oauth/authorize?oauth_token=#{@oauth_token}" %>>
-Sign in with Twitter
-</a>
+    <!-- Styles (Move -->
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
 
-<% end %>
+      #tweets {
+        background-color: #f7f7f7;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <nav class="nav">
+    <a class="nav-link active" href="#">Twim</a>
+    <%= if @current_user do %>
+    Hi, <%= @current_user.screen_name %>!
+    </br>
+    Your access token is <%= @current_user.oauth_token %>.
+    </br>
+    <a class="btn btn-primary btn-lg">
+    Log out
+    </a>
+
+    <% else %>
+
+    <a class="btn btn-primary btn-lg" href=<%= "https://api.twitter.com/oauth/authorize?oauth_token=#{@oauth_token}" %>>
+    Sign in with Twitter
+    </a>
+
+    <% end %>
+  </nav>
+
+  <body>
+    <div class="row">
+      <div class="col-md-8" id="map"></div>
+      <div class="col-md-4" id="tweets"></div>
+    </div>
+
+    <script>
+      var map;
+      function initMap() {
+        var uluru = {lat: 42.3601, lng: -71.0589};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+
+        // // Create a <script> tag and set the USGS URL as the source.
+        // var script = document.createElement('script');
+        // // This example uses a local copy of the GeoJSON stored at
+        // // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+        // script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+        // document.getElementsByTagName('head')[0].appendChild(script);
+      }
+      // map.data.loadGeoJson("data.json")
+      // map.data.loadGeoJson('http://www.CORS-ENABLED-SITE.com/data.json');
+
+      // // Loop through the results array and place a marker for each
+      // // set of coordinates.
+
+      // window.eqfeed_callback = function(results) {
+      //   for (var i = 0; i < results.features.length; i++) {
+      //     var coords = results.features[i].geometry.coordinates;
+      //     var latLng = new google.maps.LatLng(coords[1],coords[0]);
+      //     var marker = new google.maps.Marker({
+      //       position: latLng,
+      //       map: map
+      //     });
+      //   }
+      // }
+
+      // Importing Data Documentation: https://developers.google.com/maps/documentation/javascript/importing_data
+      // Data Layer Documentation: https://developers.google.com/maps/documentation/javascript/datalayer
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs6RxfVDzSno43rSh64cxvHcnRHGXbKfk&callback=initMap"
+    async defer></script>
+  </body>
+</html>
