@@ -15,6 +15,8 @@ defmodule TwimWeb.PageController do
 			tokens = AuthController.oauth_request_token
 			render conn, "index.html", oauth_token: Enum.at(tokens, 0), oauth_token_secret: Enum.at(tokens, 1), oauth_callback: Enum.at(tokens, 2)
 		else
+			user = Twim.Accounts.get_user_by_user_id(get_session(conn, :user_id))
+			AuthController.user_request(user, "https://api.twitter.com/1.1/geo/search.json", "get", [{"lat", "42"}, {"long", "-71"}])
 			render conn, "index.html"
 		end
 	end
