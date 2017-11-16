@@ -12,12 +12,11 @@
   </head>
 
   <body>
-    <div class="container">
-      <header class="header">
-        <nav class="nav">
-          <a class="nav-link active" href="#">Twim</a>
-        </nav>
-      </header>
+    <!-- <header class="header"> -->
+      <nav class="nav">
+        <a class="nav-link active" href="#">Twim</a>
+      </nav>
+    <!-- </header> -->
 
       <!-- <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p> -->
@@ -28,7 +27,6 @@
       </div>
       <!-- </main> -->
 
-    </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
