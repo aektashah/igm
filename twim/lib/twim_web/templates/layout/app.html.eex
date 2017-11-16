@@ -14,7 +14,8 @@
   <body>
     <div class="container">
       <header class="header">
-        <nav role="navigation">
+        <nav class="nav">
+          <a class="nav-link active" href="#">Twim</a>
         </nav>
       </header>
 
