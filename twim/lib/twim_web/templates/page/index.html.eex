@@ -9,8 +9,8 @@
         </a>
       </div>
       <div class="row">
-        <div class="col-md-8" id="map"></div>
-        <div class="col-md-4" id="tweets"></div>
+        <div class="col-md-8" id="map" style="height: 100%;"></div>
+        <div class="col-md-4" id="tweets" style="background-color: #f7f7f7;"></div>
       </div>
 
     <% else %>
@@ -34,32 +34,6 @@
           map: map
         });
 
-        // // Create a <script> tag and set the USGS URL as the source.
-        // var script = document.createElement('script');
-        // // This example uses a local copy of the GeoJSON stored at
-        // // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-        // script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
-        // document.getElementsByTagName('head')[0].appendChild(script);
-      }
-      // map.data.loadGeoJson("data.json")
-      // map.data.loadGeoJson('http://www.CORS-ENABLED-SITE.com/data.json');
-
-      // // Loop through the results array and place a marker for each
-      // // set of coordinates.
-
-      // window.eqfeed_callback = function(results) {
-      //   for (var i = 0; i < results.features.length; i++) {
-      //     var coords = results.features[i].geometry.coordinates;
-      //     var latLng = new google.maps.LatLng(coords[1],coords[0]);
-      //     var marker = new google.maps.Marker({
-      //       position: latLng,
-      //       map: map
-      //     });
-      //   }
-      // }
-
-      // Importing Data Documentation: https://developers.google.com/maps/documentation/javascript/importing_data
-      // Data Layer Documentation: https://developers.google.com/maps/documentation/javascript/datalayer
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs6RxfVDzSno43rSh64cxvHcnRHGXbKfk&callback=initMap"
