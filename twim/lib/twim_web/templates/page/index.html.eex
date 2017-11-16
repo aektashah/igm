@@ -29,29 +29,31 @@
 
   <nav class="nav">
     <a class="nav-link active" href="#">Twim</a>
-    <%= if @current_user do %>
-    Hi, <%= @current_user.screen_name %>!
-    </br>
-    Your access token is <%= @current_user.oauth_token %>.
-    </br>
-    <a class="btn btn-primary btn-lg">
-    Log out
-    </a>
-
-    <% else %>
-
-    <a class="btn btn-primary btn-lg" href=<%= "https://api.twitter.com/oauth/authorize?oauth_token=#{@oauth_token}" %>>
-    Sign in with Twitter
-    </a>
-
-    <% end %>
   </nav>
 
   <body>
-    <div class="row">
-      <div class="col-md-8" id="map"></div>
-      <div class="col-md-4" id="tweets"></div>
-    </div>
+    <%= if @current_user do %>
+      <div class="row">
+        Hi, <%= @current_user.screen_name %>!
+        </br>
+        Your access token is <%= @current_user.oauth_token %>.
+        </br>
+        <a class="btn btn-primary btn-lg">
+        Log out
+        </a>
+      </div>
+      <div class="row">
+        <div class="col-md-8" id="map"></div>
+        <div class="col-md-4" id="tweets"></div>
+      </div>
+
+    <% else %>
+
+      <a class="btn btn-primary btn-lg" href=<%= "https://api.twitter.com/oauth/authorize?oauth_token=#{@oauth_token}" %>>
+      Sign in with Twitter
+      </a>
+
+    <% end %>
 
     <script>
       var map;
