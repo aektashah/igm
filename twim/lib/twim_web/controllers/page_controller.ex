@@ -2,6 +2,7 @@ defmodule TwimWeb.PageController do
 	use TwimWeb, :controller
 	require Logger
 	alias TwimWeb.AuthController
+	alias TwimWeb.TweetController
 
 	def index(conn, %{"oauth_token" => oauth_token, "oauth_verifier" => oauth_verifier}) do
 		user = AuthController.oauth_access_token(oauth_token, oauth_verifier)
@@ -16,7 +17,7 @@ defmodule TwimWeb.PageController do
 			render conn, "index.html", oauth_token: Enum.at(tokens, 0), oauth_token_secret: Enum.at(tokens, 1), oauth_callback: Enum.at(tokens, 2)
 		else
 			user = Twim.Accounts.get_user_by_user_id(get_session(conn, :user_id))
-			AuthController.user_request(user, "https://api.twitter.com/1.1/users/show.json", "get", [{"user_id", user.user_id}, {"screen_name", user.screen_name}])
+			AuthController.user_request(user, "https://api.twitter.com/1.1/geo/search.json", "get", [{"lat", 41}, {"long", 72}])
 			render conn, "index.html"
 		end
 	end

@@ -1,17 +1,12 @@
-<div class="container">
     <%= if @current_user do %>
       <div class="row">
         Hi, <%= @current_user.screen_name %>!
         </br>
-        Your access token is <%= @current_user.oauth_token %>.
-        </br>
-        <a class="btn btn-primary btn-lg">
-        Log out
-        </a>
+	<%= link "Log out", to: session_path(@conn, :logout), method: :delete, class: "btn btn-primary btn-lg" %>
       </div>
-      <div class="row" style="height: 100%;">
-        <div class="col-md-8" id="map" style="height: 100%;"></div>
-        <div class="col-md-4" id="tweets" style="background-color: #f7f7f7;"></div>
+      <div class="home row">
+        <div class="col-md-8" id="map"></div>
+        <div class="col-md-4" id="tweets"></div>
       </div>
 
     <% else %>
@@ -20,9 +15,10 @@
       Sign in with Twitter
       </a>
 
+	<div id="tweet-feed" data-path="<%= tweet_path(@conn, :search) %>"></div>
+	
     <% end %>
     
-  </div>
 
     <script>
       var map;

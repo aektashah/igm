@@ -19,3 +19,28 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+$(function() {
+	if (!$("#tweet-feed").length > 0) {
+		return;
+	}
+	
+	let dd = $($("#tweet-feed")[0]);
+	let get_path = dd.data('path');
+
+	let latitude = 42.3391;
+	let longitude = -71.0876;
+
+	$.ajax({
+		url: get_path,
+		data: {lat: latitude, long: longitude},
+		contentType: "application/json",
+		dataType: "json",
+		method: "GET",
+		success: post_tweets,
+	});
+
+	function post_tweets(resp) {
+		console.log(resp);
+	}
+});
