@@ -14,14 +14,13 @@
   <body>
     <!-- <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
     <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p> -->
-
+	<script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   	<div class="container col-12">
-     	<nav class="nav">
-       	<a class="nav-link active" href="#">Twim</a>
-    	</nav>
-      <%= render @view_module, @view_template, assigns %>
-    </div>
+     		<nav class="nav">
+       			<a class="nav-link active" href="#">Twim</a>
+    		</nav>
+		<%= render @view_module, @view_template, assigns %>
+	</div>
  
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

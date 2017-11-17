@@ -1,40 +1,22 @@
-    <%= if @current_user do %>
-      <div class="row">
-        Hi, <%= @current_user.screen_name %>!
-        </br>
-	<%= link "Log out", to: session_path(@conn, :logout), method: :delete, class: "btn btn-primary btn-lg" %>
-      </div>
-      <div class="home row">
-        <div class="col-md-8" id="map"></div>
-        <div class="col-md-4" id="tweets"></div>
-      </div>
+<div class="home row">
+	<div class="col-md-8" id="map" data-path="<%= tweet_path(@conn, :search) %>"></div>
+	<div class="col-md-4" id="tweets"></div>
+</div>
+<script>
+var map;
 
-    <% else %>
-
-      <a class="btn btn-primary btn-lg" href=<%= "https://api.twitter.com/oauth/authorize?oauth_token=#{@oauth_token}" %>>
-      Sign in with Twitter
-      </a>
-
-	<div id="tweet-feed" data-path="<%= tweet_path(@conn, :search) %>"></div>
-	
-    <% end %>
-    
-
-    <script>
-      var map;
-      function initMap() {
+function initMap() {
         var uluru = {lat: 42.3601, lng: -71.0589};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: uluru
+                zoom: 15,
+                center: uluru
         });
         var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
+                position: uluru,
+                map: map
         });
-      }
-
-    </script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs6RxfVDzSno43rSh64cxvHcnRHGXbKfk&callback=initMap"
-    async defer></script>
+        var center = map.getCenter();
+        get_tweets(center.lat(), center.lng());
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs6RxfVDzSno43rSh64cxvHcnRHGXbKfk&callback=initMap" async defer></script>

@@ -20,16 +20,25 @@ import "phoenix_html"
 
 // import socket from "./socket"
 
-$(function() {
-	if (!$("#tweet-feed").length > 0) {
-		return;
-	}
-	
-	let dd = $($("#tweet-feed")[0]);
-	let get_path = dd.data('path');
+var map;
 
-	let latitude = 42.3391;
-	let longitude = -71.0876;
+function initMap() {
+       	var uluru = {lat: 42.3601, lng: -71.0589};
+       	var map = new google.maps.Map(document.getElementById('map'), {
+       		zoom: 15,
+       		center: uluru
+       	});
+       	var marker = new google.maps.Marker({
+       		position: uluru,
+       		map: map
+       	});
+	var center = map.getCenter();
+	get_tweets(center.lat(), center.lng());
+}
+
+function get_tweets(latitude, longitude) {
+	let dd = $($("#map")[0]);
+	let get_path = dd.data('path');
 
 	$.ajax({
 		url: get_path,
@@ -43,4 +52,4 @@ $(function() {
 	function post_tweets(resp) {
 		console.log(resp);
 	}
-});
+}
