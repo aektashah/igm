@@ -3,7 +3,7 @@ defmodule TwimWeb.TweetController do
 	require Logger
 
 	def search(conn, %{"lat" => lat, "long" => long}) do
-	 	tweets = format_tweets(ExTwitter.request(:get, "1.1/search/tweets.json", [geocode: "#{lat},#{long},1mi"]))
+	 	tweets = format_tweets(ExTwitter.request(:get, "1.1/search/tweets.json", [geocode: "#{lat},#{long},2mi"]))
 		render(conn, "index.json", tweets: tweets)
 	end
 	
@@ -14,7 +14,16 @@ defmodule TwimWeb.TweetController do
 	def format_tweets(data) do
 		data.statuses
 		|> Enum.filter(fn(t) -> t.geo != nil end)
-		|> Enum.map(fn(x) -> %{:geo => x.geo, :id => x.id, :text => x.text, :screen_name => x.user.screen_name} end)
+		|> Enum.map(fn(t) -> get_tweet_data(t) end)
 	end
 
+	def get_tweet_data(tweet) do
+		%{:geo => tweet.geo, 
+			:id => tweet.id_str, 
+			:text => tweet.text, 
+			:screen_name => tweet.user.screen_name,
+			:name => tweet.user.name,
+			:lang => tweet.lang,
+			:date => tweet.created_at}
+	end
 end

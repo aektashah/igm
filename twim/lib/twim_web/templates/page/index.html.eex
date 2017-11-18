@@ -1,22 +1,6 @@
 <div class="home row">
-	<div class="col-md-8" id="map" data-path="<%= tweet_path(@conn, :search) %>"></div>
-	<div class="col-md-4" id="tweets"></div>
+	<div class="col-md-12" id="map" data-path="<%= tweet_path(@conn, :search) %>"></div>
 </div>
-<script>
-var map;
-
-function initMap() {
-        var uluru = {lat: 42.3601, lng: -71.0589};
-        var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 15,
-                center: uluru
-        });
-        var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
-        });
-        var center = map.getCenter();
-        get_tweets(center.lat(), center.lng());
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs6RxfVDzSno43rSh64cxvHcnRHGXbKfk&callback=initMap" async defer></script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs6RxfVDzSno43rSh64cxvHcnRHGXbKfk"></script>
+<script sync src="https://platform.twitter.com/widgets.js"></script>
