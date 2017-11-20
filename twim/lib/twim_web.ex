@@ -40,6 +40,7 @@ defmodule TwimWeb do
       import TwimWeb.Router.Helpers
       import TwimWeb.ErrorHelpers
       import TwimWeb.Gettext
+      import ReactPhoenix.ClientSide
     end
   end
 

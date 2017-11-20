@@ -1,6 +1,9 @@
-<div class="home row">
-	<div class="col-md-12" id="map" data-path="<%= tweet_path(@conn, :search) %>"></div>
+<div id="root">
+	<!--<div class="home row">
+		<div class="col-md-12" id="map" data-path="<%= tweet_path(@conn, :search) %>"></div>
+	</div>-->
 </div>
+
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs6RxfVDzSno43rSh64cxvHcnRHGXbKfk"></script>
 <script sync src="https://platform.twitter.com/widgets.js"></script>
