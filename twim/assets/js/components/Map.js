@@ -1,5 +1,15 @@
 import React from 'react';
 
+function getLabel(screen_name) {
+	for (var i = 0; i < screen_name.length; i++) {
+		let char = screen_name[i];
+		if (char.match(/[a-z]/i)) {
+			return char;
+		}
+	}
+	return "@";
+}
+
 export default class Map extends React.Component {
 	constructor(props) {
 		super(props);
@@ -18,12 +28,6 @@ export default class Map extends React.Component {
 			infowindow: new google.maps.InfoWindow()
 		}, this.addClusters);
 	}
-	
-	initMap() {
-		/*map.addListener('dragend', function() {
-			var center = map.getCenter();
-		});*/
-	}
 
 	addClusters() {
 		this.setState({
@@ -40,18 +44,18 @@ export default class Map extends React.Component {
 			.receive("error", resp => { console.log("Unable to join", resp);
 		});
 		let { infowindow, map, markerClusterer } = this.state;
-		this.state.channel.on("tweet", payload => {
-			console.log(payload);
-			var coords = payload.geo.coordinates;
+		this.state.channel.on("tweet", tweet => {
+			console.log(tweet);
+			var coords = tweet.geo.coordinates;
 			var marker = new google.maps.Marker({
 				position: new google.maps.LatLng(coords[0], coords[1]),
-				label: payload.screen_name[0].toUpperCase()
+				label: getLabel(tweet.screen_name.toUpperCase())
 			});
 
 			var content = '<blockquote class="twitter-tweet" data-lang="en">'
-				+ '<p lang="' + payload.lang + '" dir="ltr">' + payload.text + '</p>'
-				+ '&mdash; ' + payload.name + ' (@' + payload.screen_name + ') '
-				+ '<a href="https://twitter.com/' + payload.screen_name + '/status/' + payload.id + '">' + payload.date + '</a>'
+				+ '<p lang="' + tweet.lang + '" dir="ltr">' + tweet.text + '</p>'
+				+ '&mdash; ' + tweet.name + ' (@' + tweet.screen_name + ') '
+				+ '<a href="https://twitter.com/' + tweet.screen_name + '/status/' + tweet.id + '">' + tweet.date + '</a>'
 				+ '</blockquote>';
 
 			google.maps.event.addListener(marker, 'click', function() {

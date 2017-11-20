@@ -1,6 +1,6 @@
 defmodule TwimWeb.TweetsChannel do
   use TwimWeb, :channel
-  use Agent
+  require Logger
   alias TwimWeb.TweetController
 
   def join("tweets:lobby", payload, socket) do
@@ -16,6 +16,7 @@ defmodule TwimWeb.TweetsChannel do
   def handle_in("start", payload, socket) do
 	# reference: https://www.sitepoint.com/comparing-rails-exploring-websockets-in-phoenix
 	stream = ExTwitter.stream_filter(locations: ['-180,-90,180,90'])
+	|> Stream.filter(fn t -> t != :ok end) # fixes issue that stops stream
 	|> Stream.filter(fn t -> t.geo != nil end)
 	|> Stream.map(fn t -> TweetController.get_tweet_data(t) end)
 	|> Enum.each(fn t -> broadcast socket, "tweet", t end)
@@ -25,7 +26,7 @@ defmodule TwimWeb.TweetsChannel do
 
   # Channels can be used in a request/response fashion
   # by sending replies to requests from the client
-  def handle_in(request, payload, socket) do
+  def handle_in(event, payload, socket) do
 	{:noreply, socket}
   end
 

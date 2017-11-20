@@ -13,7 +13,7 @@ config :logger, level: :warn
 config :twim, Twim.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: "postgres",
+  password: "gaisou9eiN",
   database: "twim_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
