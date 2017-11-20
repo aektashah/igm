@@ -1,20 +1,34 @@
 @import "bootstrap";
 
+$twitter-color: #1DA1F2;
+
 #tweets {
-  background-color: #f7f7f7;
+	background-color: #f7f7f7;
 }
 
 body {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	padding: 0;
+}
+
+.nav {
+	background-color: $twitter-color;
+	padding: 10px 15px;
+	a {
+		color: white;
+		font-weight: bold;
+	}
 }
 
 .home {
-  flex: 1;
+	flex: 1;
+	padding: 0 15px;
 }
+

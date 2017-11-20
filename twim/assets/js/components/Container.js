@@ -1,14 +1,14 @@
 import React from 'react';
+import Nav from './Nav';
 import Home from './Home';
 
 export default class Container extends React.Component {
 	render() {
+		let { channel } = this.props;
 		return (
 			<div className="container col-12">
-				<nav className="nav">
-					<a class="nav-link active" href="#">Twim</a>
-				</nav>
-				<Home />
+				<Nav />
+				<Home channel={channel} />
 			</div>
 		);
 	}
