@@ -14,6 +14,7 @@ defmodule TwimWeb.TweetsChannel do
   # Channels can be used in a request/response fashion
   # by sending replies to requests from the client
   def handle_in("start", payload, socket) do
+	Logger.info "started"
 	# reference: https://www.sitepoint.com/comparing-rails-exploring-websockets-in-phoenix
 	stream = ExTwitter.stream_filter(locations: ['-180,-90,180,90'])
 	|> Stream.filter(fn t -> t != :ok end) # fixes issue that stops stream

@@ -22,7 +22,7 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-#Extwitter
+# Configures ExTwitter
 config :extwitter, :oauth, [
    consumer_key: System.get_env("CONSUMER_KEY"),
    consumer_secret: System.get_env("CONSUMER_SECRET"),
@@ -30,6 +30,8 @@ config :extwitter, :oauth, [
    access_token_secret: System.get_env("TOKEN_SECRET")
 ]
 
+# Configures Porcelain to suppress goon warning
+config :porcelain, driver: Porcelain.Driver.Basic
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

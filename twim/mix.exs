@@ -44,7 +44,8 @@ defmodule Twim.Mixfile do
       {:oauther, "~> 1.1"},
       {:hackney, "~> 1.10"},
       {:extwitter, "~> 0.8"},
-      {:react_phoenix, "~> 0.4.3"}
+      {:react_phoenix, "~> 0.4.3"},
+      {:distillery, "~> 1.4"}
     ]
   end
 
