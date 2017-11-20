@@ -1,32 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
 
-    <title>Hello Twim!</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-  </head>
+		<title>Hello Twim!</title>
+		<link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+	</head>
 
-  <body>
-    <!-- <header class="header"> -->
-      <nav class="nav">
-        <a class="nav-link active" href="#">Twim</a>
-      </nav>
-    <!-- </header> -->
-
-      <!-- <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p> -->
-
-      <!-- <main role="main"> -->
-      <div class="row">
-        <%= render @view_module, @view_template, assigns %>
-      </div>
-      <!-- </main> -->
-
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-  </body>
+	<body>
+		<!-- <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+		<p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p> -->
+		<div id="root"></div>
+		<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs6RxfVDzSno43rSh64cxvHcnRHGXbKfk"></script>
+		<script sync src="https://platform.twitter.com/widgets.js"></script>
+		<script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+		</body>
 </html>

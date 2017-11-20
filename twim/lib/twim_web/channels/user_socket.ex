@@ -2,7 +2,7 @@ defmodule TwimWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", TwimWeb.RoomChannel
+  channel "tweets:lobby", TwimWeb.TweetsChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

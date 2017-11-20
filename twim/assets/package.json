@@ -6,10 +6,17 @@
     "watch": "brunch watch --stdin"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.6",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "bootstrap": "^4.0.0-beta",
+    "handlebars": "^4.0.11",
     "jquery": "^3.2.1",
     "phoenix": "file:../deps/phoenix",
-    "phoenix_html": "file:../deps/phoenix_html"
+    "phoenix_html": "file:../deps/phoenix_html",
+    "popper.js": "^1.12.9",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-phoenix": "file:../deps/react_phoenix"
   },
   "devDependencies": {
     "babel-brunch": "6.1.1",

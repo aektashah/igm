@@ -19,10 +19,12 @@ defmodule TwimWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    delete "/sessions", SessionController, :logout
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", TwimWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", TwimWeb do
+    pipe_through :api
+  
+    get "/tweets", TweetController, :search
+  end
 end
